@@ -1,10 +1,14 @@
 package com.wyk.controller;
 
 import com.wyk.Util;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.wyk.service.LockService;
+import org.aspectj.lang.annotation.Around;
+import org.redisson.Redisson;
+import org.redisson.RedissonLock;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +22,9 @@ import java.util.Iterator;
  */
 @RestController
 public class MainController {
+
+    @Autowired
+    private LockService lockService;
 
     @GetMapping("get")
     public String getIp(HttpServletRequest request){
@@ -39,19 +46,15 @@ public class MainController {
     }
 
     @GetMapping(value = "/hello")
-    public String getM(){
-        System.out.println(1);
-        return "";
-    }
-
-    @PostMapping(value = "/hello")
     public String hello(){
-        return "";
+        System.out.println(1);
+        return "hello";
     }
 
-    @PutMapping(value = "/hello")
-    public String he(){
-        return "";
+    @GetMapping(value = "/hello2")
+    public String hello2(String name){
+        System.out.println(name);
+        return "hello2";
     }
 
     @GetMapping(value = "/web")
@@ -68,6 +71,12 @@ public class MainController {
         return "123"+name;
     }
 
+
+    @GetMapping("/lock")
+    public String lock(@RequestParam(name = "lock",required = false)String lock){
+        String s = lockService.doSomething();
+        return "lock结束";
+    }
 
     public static void main(String[] args) throws IOException {
 

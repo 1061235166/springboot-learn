@@ -1,5 +1,10 @@
 package com.wyk;
 
+import com.google.common.collect.Lists;
+import com.wyk.annotation.AutoPrint;
+import com.wyk.annotation.AutoPrintBean;
+import com.wyk.config.ExistsBean;
+import com.wyk.config.ExistsCondition;
 import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Required;
@@ -8,6 +13,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.EnvironmentCapable;
 import org.springframework.web.context.WebApplicationContext;
@@ -22,23 +29,37 @@ import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.stream.StreamSupport;
 
 @SpringBootApplication
 @MapperScan(basePackages = "com.wyk.mapper")
+@AutoPrint
 public class SpringbootmybatisplusApplication {
 
+	@Bean
+	@Conditional(ExistsCondition.class)
+	public ExistsBean bean(){
+		return new ExistsBean();
+	}
+
 	public static void main(String[] args) throws InterruptedException, ClassNotFoundException {
-//		ConfigurableApplicationContext context = SpringApplication.run(SpringbootmybatisplusApplication.class, args);
-		SpringApplication application = new SpringApplication(SpringbootmybatisplusApplication.class);
+		ConfigurableApplicationContext context = SpringApplication.run(SpringbootmybatisplusApplication.class, args);
+		String[] beanDefinitionNames = context.getBeanDefinitionNames();
 
-		application.setBanner(new Banner() {
-			@Override
-			public void printBanner(Environment environment, Class<?> sourceClass, PrintStream out) {
-				out.println("ahjsdkhkajsd");
-			}
-		});
+		System.out.println(context.getBean(AutoPrintBean.class));
 
-		application.run(args);
+//		Arrays.stream(beanDefinitionNames).forEach((s)->{
+//			System.out.println(context.getBean(s).getClass());
+//		});
+//		SpringApplication application = new SpringApplication(SpringbootmybatisplusApplication.class);
+//
+//		application.setBanner(new Banner() {
+//			@Override
+//			public void printBanner(Environment environment, Class<?> sourceClass, PrintStream out) {
+//				out.println("ahjsdkhkajsd");
+//			}
+//		});
+
 //		System.out.println(Integer.class.getName());
 //		System.out.println(Number.class.getName());
 //
@@ -67,7 +88,10 @@ public class SpringbootmybatisplusApplication {
 		System.out.println(requiredClass);
 
 
+		Lists.newArrayList(1,2,3,4).forEach(System.out::println);
 	}
+
+
 
 	static Set<Integer>sets = new HashSet<>();
 

@@ -5,6 +5,9 @@ import com.wyk.annotation.AutoPrint;
 import com.wyk.annotation.AutoPrintBean;
 import com.wyk.config.ExistsBean;
 import com.wyk.config.ExistsCondition;
+import com.wyk.config.SubExsistBean;
+import com.wyk.config.processor.DefaultBeanFactoryPostProcessor;
+import com.wyk.config.processor.DefaultProcessor;
 import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Required;
@@ -42,11 +45,21 @@ public class SpringbootmybatisplusApplication {
 		return new ExistsBean();
 	}
 
+	@Bean
+	public DefaultProcessor defaultProcessor(){
+		return new DefaultProcessor();
+	}
+
+	@Bean
+	public DefaultBeanFactoryPostProcessor factoryPostProcessor(){
+		return new DefaultBeanFactoryPostProcessor();
+	}
+
 	public static void main(String[] args) throws InterruptedException, ClassNotFoundException {
 		ConfigurableApplicationContext context = SpringApplication.run(SpringbootmybatisplusApplication.class, args);
-		String[] beanDefinitionNames = context.getBeanDefinitionNames();
+//		System.out.println(context.getBean("bean"));
 
-		System.out.println(context.getBean(AutoPrintBean.class));
+		System.out.println(context.getBean(SubExsistBean.class));
 
 //		Arrays.stream(beanDefinitionNames).forEach((s)->{
 //			System.out.println(context.getBean(s).getClass());

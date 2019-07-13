@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 /**
  *
  * 自动配置类，使用该配置，会自动引入AutoPrintBean实例
- * Created by k on 2019/6/18.
+ * Created by wyk on 2019/6/18.
  */
 @Import(AutoPrintBean.class)
 @Configuration

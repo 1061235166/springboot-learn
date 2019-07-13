@@ -1,5 +1,6 @@
 package com.wyk.controller;
 
+import com.wyk.RedisPubSubUtils;
 import com.wyk.Util;
 import com.wyk.service.LockService;
 import org.aspectj.lang.annotation.Around;
@@ -76,6 +77,12 @@ public class MainController {
     public String lock(@RequestParam(name = "lock",required = false)String lock){
         String s = lockService.doSomething();
         return "lock结束";
+    }
+
+    @GetMapping("/pub")
+    public String pub(){
+        RedisPubSubUtils.publish("talk","pub");
+        return "success;";
     }
 
     public static void main(String[] args) throws IOException {

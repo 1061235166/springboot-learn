@@ -8,7 +8,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 
 /**
  * bean再被初始化前后的一些操作
- * Created by k on 2019/6/23.
+ * Created by wyk on 2019/6/23.
  */
 public class DefaultProcessor implements BeanPostProcessor {
 

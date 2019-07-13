@@ -20,19 +20,9 @@ import java.util.Map;
 @Service
 public class ResourceService {
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(new File("C:\\Users\\wyk\\Desktop\\福汇模拟账号.txt")));
-        String r = null;
-        while ((r=reader.readLine())!=null){
-            System.out.println(r);
-        }
-
-        InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream("C:\\Users\\wyk\\Desktop\\福汇模拟账号.txt"),"gbk");
-
-        reader = new BufferedReader(inputStreamReader);
-        while ((r=reader.readLine())!=null){
-            System.out.println(r);
-        }
+    public static void main(String[] args) {
+        int i = Runtime.getRuntime().availableProcessors();
+        System.out.println(i);
     }
 
 }

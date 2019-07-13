@@ -9,7 +9,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Created by k on 2018/6/3.
+ * Created by wyk on 2018/6/3.
  */
 public class MacServer {
     public static void main(String[] args) throws IOException {

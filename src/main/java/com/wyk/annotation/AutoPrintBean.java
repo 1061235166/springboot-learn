@@ -1,7 +1,7 @@
 package com.wyk.annotation;
 
 /**
- * Created by k on 2019/6/18.
+ * Created by wyk on 2019/6/18.
  */
 public class AutoPrintBean {
     public void out(){

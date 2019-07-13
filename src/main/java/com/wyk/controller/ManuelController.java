@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by k on 2018/12/7.
+ * Created by wyk on 2018/12/7.
  */
 public class ManuelController extends SimpleControllerHandlerAdapter {
 

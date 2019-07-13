@@ -8,7 +8,7 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 
 /**
- * Created by k on 2018/6/3.
+ * Created by wyk on 2018/6/3.
  */
 public class Util {
     public static String getMACAddress(InetAddress ia) throws Exception {
